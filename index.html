@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-container"></div>
+    <div class="quiz-container">
+        <div id="home-screen">
+            <h1>Interactive Quiz Game</h1>
+            <p>Test your knowledge with this fun quiz!</p>
+            <button id="start-btn">Start Quiz</button>
+        </div>
+
+        <div id="quiz-screen" class="hide">
+            <div class="quiz-header">
+                <div class="timer-container">
+                    <span>Time Left: </span>
+                    <span id="timer">60</span>
+                </div>
+                <div class="score-container">
+                    <span>Score: </span>
+                    <span id="score">0</span>
+                </div>
+                <div class="question-number">
+                    <span>Question: </span>
+                    <span id="question-num">1/10</span>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <h2 id="question-text">Question text will appear here</h2>
+                <div id="answer-buttons" class="btn-grid">
+                    <!-- Answer buttons will be inserted here -->
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="next-btn" class="next-btn hide">Next</button>
+            </div>
+        </div>
+
+        <div id="results-screen" class="hide">
+            <h1>Quiz Results</h1>
+            <div class="result-details">
+                <p>Your score: <span id="final-score">0</span> out of 100</p>
+                <p>Questions answered: <span id="questions-answered">0</span> out of 10</p>
+                <p>Accuracy: <span id="accuracy">0</span>%</p>
+            </div>
+            <div id="message">Great job!</div>
+            <button id="restart-btn">Try Again</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

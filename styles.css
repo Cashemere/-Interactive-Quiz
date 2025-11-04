@@ -1,0 +1,293 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+.background-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.quiz-container {
+    width: 600px;
+    max-width: 90%;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.timer-container, .score-container, .question-number {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.timer-container:hover, .score-container:hover, .question-number:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#timer {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+#score {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.question-container {
+    margin-bottom: 20px;
+}
+
+#question-text {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+button {
+    border: none;
+    background-color: #4263eb;
+    color: white;
+    border-radius: 50px;
+    padding: 14px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(66, 99, 235, 0.2);
+}
+
+button:hover {
+    background-color: #364fc7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(66, 99, 235, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.answer-btn {
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #212529;
+    border-left: 5px solid #adb5bd;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.answer-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: rgba(66, 99, 235, 0.1);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.answer-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateX(5px);
+}
+
+.answer-btn:hover::before {
+    width: 100%;
+}
+
+.answer-btn.correct {
+    background-color: rgba(46, 204, 113, 0.2);
+    border-left: 5px solid #28a745;
+    color: #155724;
+    animation: pulse 1s;
+}
+
+.answer-btn.wrong {
+    background-color: rgba(231, 76, 60, 0.2);
+    border-left: 5px solid #dc3545;
+    color: #721c24;
+    animation: shake 0.5s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.next-btn {
+    font-weight: 600;
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #4263eb, #3b5bdb);
+}
+
+.next-btn:hover {
+    background: linear-gradient(135deg, #364fc7, #2b4dd1);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.hide {
+    display: none;
+}
+
+#home-screen, #results-screen {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+#home-screen h1, #results-screen h1 {
+    color: #343a40;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #4263eb, #3b5bdb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#home-screen p {
+    color: #495057;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.result-details {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 25px 0;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.result-details p {
+    margin: 12px 0;
+    font-size: 18px;
+    color: #495057;
+}
+
+#final-score, #accuracy {
+    font-weight: bold;
+    color: #2ecc71;
+    font-size: 20px;
+}
+
+#message {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px 0;
+    background: linear-gradient(135deg, #4263eb, #3b5bdb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s;
+}
+
+#restart-btn {
+    background: linear-gradient(135deg, #fd7e14, #fa5252);
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(253, 126, 20, 0.3);
+}
+
+#restart-btn:hover {
+    background: linear-gradient(135deg, #f76707, #e03131);
+    box-shadow: 0 6px 12px rgba(253, 126, 20, 0.4);
+}
+
+@media (max-width: 500px) {
+    .quiz-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    #question-text {
+        font-size: 1.2rem;
+    }
+    
+    .result-details p {
+        font-size: 16px;
+    }
+    
+    #message {
+        font-size: 20px;
+    }
+}
